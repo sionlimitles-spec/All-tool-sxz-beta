@@ -1,0 +1,57 @@
+'use client'
+import { useEffect, useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+
+export default function Pomodoro() {
+  const [seconds, setSeconds] = useState(25 * 60)
+    const [running, setRunning] = useState(false)
+
+      useEffect(() => {
+          if (!running) return
+              const interval = setInterval(() => {
+                    setSeconds(s => {
+                            if (s <= 1) { setRunning(false); return 0 }
+                                    return s - 1
+                                          })
+                                              }, 1000)
+                                                  return () => clearInterval(interval)
+                                                    }, [running])
+
+                                                      const m = String(Math.floor(seconds / 60)).padStart(2, '0')
+                                                        const s = String(seconds % 60).padStart(2, '0')
+                                                          const progress = 1 - seconds / (25 * 60)
+
+                                                            return (
+                                                                <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6">
+                                                                      <div className="max-w-md mx-auto">
+                                                                              <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2">Timer Pomodoro</h1>
+                                                                                      <p className="text-slate-500 mb-6">Fokus 25 menit, istirahat 5 menit</p>
+                                                                                              <Card className="card-modern border-0">
+                                                                                                        <CardContent className="pt-6 space-y-6">
+                                                                                                                    <div className="relative w-64 h-64 mx-auto">
+                                                                                                                                  <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                                                                                                                                                  <circle cx="50" cy="50" r="45" fill="none" stroke="rgb(226 232 240)" strokeWidth="6" className="dark:stroke-slate-800" />
+                                                                                                                                                                  <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6"
+                                                                                                                                                                                    strokeDasharray={`${2 * Math.PI * 45}`}
+                                                                                                                                                                                                      strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress)}`}
+                                                                                                                                                                                                                        strokeLinecap="round" className="accent-text transition-all duration-1000" />
+                                                                                                                                                                                                                                      </svg>
+                                                                                                                                                                                                                                                    <div className="absolute inset-0 flex items-center justify-center">
+                                                                                                                                                                                                                                                                    <p className="text-6xl font-bold text-slate-800 dark:text-slate-100 tabular-nums">{m}:{s}</p>
+                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                                          <div className="flex gap-3 justify-center">
+                                                                                                                                                                                                                                                                                                                        <button onClick={() => setRunning(!running)} className="accent-bg px-8 py-3 rounded-xl font-medium">
+                                                                                                                                                                                                                                                                                                                                        {running ? 'Jeda' : 'Mulai'}
+                                                                                                                                                                                                                                                                                                                                                      </button>
+                                                                                                                                                                                                                                                                                                                                                                    <button onClick={() => { setRunning(false); setSeconds(25 * 60) }}
+                                                                                                                                                                                                                                                                                                                                                                                    className="px-8 py-3 rounded-xl font-medium bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                                                                                                                                                                                                                                                                                                                                                                                                    Reset
+                                                                                                                                                                                                                                                                                                                                                                                                                  </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </CardContent>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </Card>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            }

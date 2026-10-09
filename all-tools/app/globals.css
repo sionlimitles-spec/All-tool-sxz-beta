@@ -128,3 +128,55 @@
     @apply font-sans;
   }
 }
+
+:root {
+    --accent-h: 217;
+      --accent-s: 91%;
+        --accent-l: 60%;
+        }
+
+        .dark { color-scheme: dark; }
+
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+
+        .dark body { background-color: #0b1120; color: #e2e8f0; }
+
+        .accent-bg {
+          background-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+            color: white;
+              transition: all 0.2s ease;
+              }
+              .accent-bg:hover {
+                background-color: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+                }
+                .accent-text { color: hsl(var(--accent-h), var(--accent-s), var(--accent-l)); }
+                .accent-border { border-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l)); }
+
+                .glass {
+                  background: rgba(255, 255, 255, 0.7);
+                    backdrop-filter: blur(12px);
+                      -webkit-backdrop-filter: blur(12px);
+                      }
+                      .dark .glass { background: rgba(15, 23, 42, 0.7); }
+
+                      .card-modern {
+                        background: white;
+                          border: 1px solid rgb(226 232 240);
+                            border-radius: 16px;
+                              transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                              }
+                              .card-modern:hover {
+                                border-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+                                  transform: translateY(-4px);
+                                    box-shadow: 0 12px 24px -8px hsl(var(--accent-h), var(--accent-s), var(--accent-l), 0.25);
+                                    }
+                                    .dark .card-modern { background: rgb(15 23 42); border-color: rgb(30 41 59); }
+
+                                    .dark .bg-slate-50 { background-color: #0b1120 !important; }
+                                    .dark .bg-white { background-color: rgb(15 23 42) !important; }
+                                    .dark .text-slate-800 { color: #f1f5f9 !important; }
+                                    .dark .text-slate-700 { color: #e2e8f0 !important; }
+                                    .dark .text-slate-600 { color: #cbd5e1 !important; }
+                                    .dark .text-slate-500 { color: #94a3b8 !important; }
+                                    .dark .border-slate-200 { border-color: rgb(30 41 59) !important; }
+}
